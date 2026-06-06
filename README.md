@@ -1,16 +1,23 @@
-# Employee Attrition Prediction & Analysis
+# Workforce Intelligence
 
-A Machine Learning + Data Analytics project built using Python.
+Employee Attrition Prediction System using
+Machine Learning and Workforce Analytics.
 
-## Project Structure
+## Technologies
+- Python
+- Flask
+- XGBoost
+- HTML
+- CSS
+- JavaScript
 
-- dataset/ → dataset files (not uploaded)
-- notebook/ → data analysis notebook
-- model/ → trained models
-- website/ → web interface
-- report/ → project report
+## Features
+- Workforce Attrition Prediction
+- Quick Assessment
+- Advanced Intelligence Suite
+- Interactive UI
+- Workforce Analytics Dashboard
 
-## Dataset
-
-IBM HR Analytics Employee Attrition Dataset
-(Kaggle Dataset)
+## Author
+Jeevan Jyoti Das
+NIELIT Data Curaion and Data Science project

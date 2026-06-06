@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Workforce Insights</title>
+
+    <link rel="stylesheet" href="../static/insights.css">
+</head>
+
+<body>
+
+    <div class="insights-container">
+
+        <header class="topbar">
+
+            <h1>
+                WORKFORCE
+                INSIGHTS
+            </h1>
+
+            <a href="/">
+                ← HOME
+            </a>
+
+        </header>
+
+        <section class="hero-panel">
+
+            <h2>
+
+                Quick Workforce
+                Attrition Risk Assessment
+
+            </h2>
+
+            <p>
+
+                Predict workforce
+                attrition probability
+                using key employee factors.
+
+            </p>
+
+            <p>
+                Quick Workforce Attrition Risk Assessment
+            </p>
+
+            <form action="/predict" method="POST">
+
+                <!-- AGE -->
+
+                <label>Age (in Years)</label>
+                <br>
+                <input type="number" name="age" min="18" max="65" placeholder="e.g. 28" required>
+                <br><br>
+
+                <!-- MONTHLY INCOME -->
+
+                <label>Monthly Income (in &#8377;)</label>
+                <br>
+                <input type="number" name="income" min="1000" max="500000" placeholder="e.g. &#8377;45,000" required>
+                <small>
+                    Monthly salary in Indian Rupees
+                </small>
+                <br><br>
+
+                <!-- DISTANCE -->
+
+                <label>Distance From Home (in km)</label>
+                <br>
+                <input type="number" name="distance" min="0" max="100" placeholder="e.g. 12 km" required>
+                <br><br>
+
+                <!-- OVERTIME -->
+
+                <label>Overtime Status</label>
+                <br>
+
+                <select name="overtime">
+
+                    <option value="" selected disabled>
+                        Select Overtime
+                    </option>
+
+                    <option value="yes">Yes</option>
+
+                    <option value="no">No</option>
+
+                </select>
+
+                <br><br>
+
+                <!-- JOB SATISFACTION -->
+
+                <label>Job Satisfaction</label>
+                <br>
+
+                <select name="jobsatisfaction">
+
+                    <option value="" selected disabled>
+                        Select Job Satisfaction
+                    </option>
+
+                    <option value="1">1 - Low</option>
+
+                    <option value="2">2 - Medium</option>
+
+                    <option value="3">3 - High</option>
+
+                    <option value="4">4 - Very High</option>
+
+                </select>
+
+                <br><br>
+
+                <!-- WORK LIFE BALANCE -->
+
+                <label>Work Life Balance</label>
+                <br>
+
+                <select name="worklifebalance">
+
+                    <option value="" selected disabled>
+                        Select Work Life Balance
+                    </option>
+
+                    <option value="1">1 - Poor</option>
+
+                    <option value="2">2 - Fair</option>
+
+                    <option value="3">3 - Good</option>
+
+                    <option value="4">4 - Excellent</option>
+
+                </select>
+
+                <br><br>
+
+
+
+                <!-- ENVIRONMENT SATISFACTION -->
+
+                <label>Environment Satisfaction</label>
+                <br>
+
+                <select name="environmentsatisfaction">
+
+                    <option value="" selected disabled>
+                        Select Environment Satisfaction
+                    </option>
+
+                    <option value="1">1 - Low</option>
+
+                    <option value="2">2 - Medium</option>
+
+                    <option value="3">3 - High</option>
+
+                    <option value="4">4 - Very High</option>
+
+                </select>
+
+                <br><br>
+
+                <button type="submit">
+
+                    Predict Workforce Risk
+
+                </button>
+
+            </form>
+
+            <br>
+
+            <div class="nav-actions">
+
+                <a class="advanced-link" href="/advanced">
+
+                    ADVANCED ANALYSIS →
+
+                </a>
+
+            </div>
+
+
+
+            {% if prediction_result %}
+
+            <div class="result-overlay" id="resultModal">
+
+                <div class="result-card">
+
+                    <button class="modal-close" onclick="closeModal()">
+                        ✕
+                    </button>
+
+                    <div class="risk-badge
+{% if 'LOW' in risk_status %}
+risk-low
+{% elif 'MEDIUM' in risk_status %}
+risk-medium
+{% else %}
+risk-high
+{% endif %}
+">
+                        {{ risk_status }}
+                    </div>
+
+                    <div class="analysis-type">
+
+                        QUICK ASSESSMENT
+
+                    </div>
+
+                    <div class="probability-value">
+
+                        {{ probability }}%
+
+                    </div>
+
+                    <div class="probability-tag">
+
+                        ATTRITION RISK
+
+                    </div>
+
+                    <p class="prediction-text">
+
+                        {{ prediction_result }}
+
+                    </p>
+
+                    <button class="close-btn" onclick="window.location.href='/insights'">
+
+                        Analyze Another Employee
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        </section>
+
+    </div>
+
+    <script>
+
+        document
+            .querySelectorAll(
+                'input[type="number"]'
+            )
+
+            .forEach(input => {
+
+                input.addEventListener(
+
+                    "wheel",
+
+                    function (e) {
+
+                        e.target.blur()
+
+                    }
+
+                )
+
+            })
+
+    </script>
+
+    <script>
+
+        function closeModal() {
+
+            document.getElementById(
+                "resultModal"
+            ).style.display = "none";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

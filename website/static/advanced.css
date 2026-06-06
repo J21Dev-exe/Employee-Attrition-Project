@@ -1,0 +1,561 @@
+body{
+    margin:0;
+
+    background:
+    radial-gradient(circle at center,
+    #0f0f0f,
+    #050505);
+
+    color:white;
+    font-family:Inter,sans-serif;
+
+    position:relative;
+    overflow-x:hidden;
+}
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:-1;
+
+    background-image:
+    radial-gradient(
+        rgba(255,255,255,.12) 1px,
+        transparent 1px
+    );
+
+    background-size:95px 95px;
+
+    opacity:.45;
+
+    mask-image:
+    radial-gradient(
+        circle at center,
+        white 45%,
+        transparent 100%
+    );
+
+}
+
+.advanced-container{
+
+    min-height:100vh;
+
+    padding:55px 70px;
+
+    box-sizing:border-box;
+
+}
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    margin-bottom:65px;
+
+}
+
+.logo{
+
+    font-size:1rem;
+
+    letter-spacing:2px;
+
+    line-height:1;
+
+    font-weight:700;
+
+}
+
+.topbar a{
+
+    color:#d4d4d4;
+
+    text-decoration:none;
+
+}
+
+.hero-grid{
+    display:grid;
+
+    grid-template-columns:
+    minmax(700px,1.3fr)
+    minmax(420px,.7fr);
+
+    gap:28px;
+
+    align-items:start;
+}
+
+.panel{
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,.04),
+        rgba(255,255,255,.01)
+    );
+
+    border:none;
+
+    border-radius:28px;
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+    0 25px 80px rgba(0,0,0,.35);
+
+    padding:40px;
+
+    height:auto;
+min-height:unset;
+}
+
+.panel h2{
+
+    margin-top:0;
+
+    font-size:2.6rem;
+
+    line-height:1.05;
+
+}
+
+.subtitle{
+
+    color:#9f9f9f;
+
+    margin-bottom:40px;
+
+}
+
+.feature-guidance{
+
+    color:#9a9a9a;
+
+    font-size:.9rem;
+
+    margin-top:-8px;
+
+    margin-bottom:18px;
+
+}
+
+.feature-btn{
+
+    width:100%;
+
+    background:#161616;
+
+    color:white;
+
+    border:1px solid #2b2b2b;
+
+    padding:16px;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    margin-bottom:20px;
+
+}
+
+.feature-btn:hover{
+
+    border-color:#555;
+
+}
+
+#selectedFeatures{
+
+    min-height:60px;
+
+    margin-bottom:30px;
+
+}
+
+.empty-selection{
+
+    color:#8f8f8f;
+
+    font-size:.9rem;
+
+}
+
+form{
+
+    display:grid;
+
+    gap:18px;
+
+}
+
+input,
+select{
+
+    background:#151515;
+
+    border:1px solid #282828;
+
+    color:white;
+
+    padding:15px;
+
+    border-radius:16px;
+
+}
+
+.predict-btn{
+
+    background:white;
+
+    color:black;
+
+    border:none;
+
+    border-radius:16px;
+
+    padding:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+.metric-card{
+
+    background:#171717;
+
+    border-radius:20px;
+
+    padding:24px;
+
+    margin-bottom:22px;
+
+}
+
+.metric-label{
+
+    color:#8f8f8f;
+
+    font-size:.85rem;
+
+}
+
+.metric-value{
+
+    font-size:2rem;
+
+    margin-top:8px;
+
+    font-weight:700;
+
+}
+
+/* ---------- RESULT MODAL ---------- */
+
+.result-overlay{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.72);
+
+    backdrop-filter:blur(10px);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999;
+
+}
+
+.result-card{
+
+    position:relative;
+
+    width:580px;
+
+    background:#101010;
+
+    border:1px solid #252525;
+
+    border-radius:26px;
+
+    padding:50px;
+
+    text-align:center;
+
+    color:white;
+
+    box-shadow:0 25px 80px rgba(0,0,0,.55);
+
+}
+
+.modal-close{
+
+    position:absolute;
+
+    top:22px;
+
+    right:22px;
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:#161616;
+
+    border:1px solid #2b2b2b;
+
+    color:white;
+
+    font-size:1.1rem;
+
+    cursor:pointer;
+
+    padding:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.modal-close:hover{
+
+    background:#222;
+
+}
+
+.risk-badge{
+
+    display:inline-block;
+
+    background:#181818;
+
+    border:1px solid #2d2d2d;
+
+    border-radius:999px;
+
+    padding:10px 18px;
+
+    margin-bottom:20px;
+
+    font-size:.82rem;
+
+    letter-spacing:1px;
+
+}
+
+.analysis-type{
+
+    color:#8e8e8e;
+
+    font-size:.82rem;
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+    margin-top:30px;
+
+    margin-bottom:30px;
+
+}
+
+.probability-value{
+
+    font-size:5rem;
+
+    font-weight:800;
+
+    line-height:1;
+
+    margin-bottom:12px;
+
+}
+
+.probability-tag{
+
+    color:#9a9a9a;
+
+    font-size:.9rem;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    margin-bottom:35px;
+
+}
+
+.prediction-text{
+
+    color:#cfcfcf;
+
+    line-height:1.8;
+
+    font-size:1.15rem;
+
+    margin-bottom:35px;
+
+}
+
+.close-btn{
+
+    background:white;
+
+    color:black;
+
+    border:none;
+
+    border-radius:16px;
+
+    padding:16px 28px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+.close-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.feature-modal{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+    rgba(0,0,0,.75);
+
+    backdrop-filter:
+    blur(8px);
+
+    z-index:2000;
+
+}
+
+.feature-modal-card{
+
+    width:500px;
+
+    background:#101010;
+
+    border:1px solid #252525;
+
+    border-radius:24px;
+
+    padding:35px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+}
+
+.feature-modal-card h3{
+
+    margin-top:0;
+
+    margin-bottom:10px;
+
+    font-size:1.5rem;
+
+}
+
+.feature-modal-card label{
+
+    display:flex;
+
+    gap:12px;
+
+    align-items:center;
+
+    cursor:pointer;
+
+}
+
+.feature-chip{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:10px 16px;
+
+    border-radius:999px;
+
+    background:#181818;
+
+    border:1px solid #2c2c2c;
+
+    margin-right:10px;
+
+    margin-bottom:10px;
+
+    font-size:.9rem;
+
+    color:white;
+
+}
+
+#featureCounter{
+
+    color:#d8d8d8;
+
+    font-size:.95rem;
+
+    margin-top:-8px;
+
+    margin-bottom:10px;
+
+}
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    margin-bottom:20px;
+
+}

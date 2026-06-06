@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Advanced Intelligence Suite</title>
+
+    <link rel="stylesheet" href="../static/advanced.css">
+
+</head>
+
+<body>
+
+    <div class="advanced-container">
+
+        <header class="topbar">
+
+            <div class="logo">
+
+                ADVANCED
+                INTELLIGENCE SUITE
+
+            </div>
+
+            <div class="nav-links">
+
+                <a class="nav-btn" href="/insights">
+
+                    ← INSIGHTS
+
+                </a>
+
+                <a class="nav-btn" href="/">
+
+                    HOME
+
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <div class="hero-grid">
+
+            <!-- LEFT PANEL -->
+
+            <section class="panel">
+
+                <h2>
+
+                    Advanced Intelligence Suite
+
+                </h2>
+
+                <p class="subtitle">
+
+                    Extended employee attrition
+                    prediction with deeper
+                    workforce indicators.
+
+                </p>
+
+                <button type="button" id="openFeatureModal" class="feature-btn">
+
+                    + Select Features
+
+                </button>
+
+                <p class="feature-guidance">
+
+                    Minimum:
+                    7 indicators
+
+                    •
+
+                    Recommended:
+                    10 indicators
+
+                    •
+
+                    Maximum:
+                    18 indicators
+
+                </p>
+
+                <div id="selectedFeatures">
+
+                    <p class="empty-selection">
+
+                        No features selected
+
+                    </p>
+
+                </div>
+
+                <!-- FEATURE SELECTION MODAL -->
+
+                <div id="featureModal" class="feature-modal">
+
+                    <div class="feature-modal-card">
+
+                        <h3>
+
+                            Select Workforce Indicators
+
+                        </h3>
+
+                        <p id="featureCounter">
+
+                            Selected: 7 / 18
+
+                        </p>
+
+                        <p class="feature-guidance">
+
+                            Available Indicators: 18
+
+                            Minimum Required: 7
+
+                            Recommended: 10
+
+                            Maximum Allowed: 18
+
+                        </p>
+
+                        <label>
+                            <input type="checkbox" name="selected_features" value="age" class="core-feature" checked>
+                            Age (Core)
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="selected_features" value="monthlyincome" class="core-feature"
+                                checked>
+                            Monthly Income (Core)
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="selected_features" value="distancefromhome"
+                                class="core-feature" checked>
+                            Distance From Home (Core)
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="selected_features" value="environmentsatisfaction"
+                                class="core-feature" checked>
+                            Environment Satisfaction (Core)
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="selected_features" value="jobsatisfaction" class="core-feature"
+                                checked>
+                            Job Satisfaction (Core)
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="selected_features" value="worklifebalance" class="core-feature"
+                                checked>
+                            Work Life Balance (Core)
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="selected_features" value="overtime" class="core-feature"
+                                checked>
+                            Overtime (Core)
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="selected_features" value="jobinvolvement">
+                            Job Involvement
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="selected_features" value="relationshipsatisfaction">
+                            Relationship Satisfaction
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="selected_features" value="totalworkingyears">
+                            Total Working Years
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="selected_features" value="yearsatcompany">
+                            Years At Company
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="selected_features" value="yearsincurrentrole">
+                            Years In Current Role
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="selected_features" value="percentsalaryhike">
+                            Percent Salary Hike
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="selected_features" value="numcompaniesworked">
+                            Number of Companies Worked
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="selected_features" value="stockoptionlevel">
+                            Stock Option Level
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="selected_features" value="trainingtimeslastyear">
+                            Training Times Last Year
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="selected_features" value="yearssincelastpromotion">
+                            Years Since Last Promotion
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="selected_features" value="yearswithcurrentmanager">
+                            Years With Current Manager
+                        </label>
+
+                        <button type="button" id="applyFeatures">
+
+                            Apply Features
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <form id="advancedForm" action="/advanced_predict" method="POST">
+
+                    <div id="dynamicFormFields"></div>
+
+                    <button class="predict-btn" type="submit">
+
+                        Predict Advanced Risk
+
+                    </button>
+
+                </form>
+
+            </section>
+
+
+            <!-- RIGHT PANEL -->
+
+            <section class="panel">
+
+                <h2>
+
+                    Workforce Analytics
+
+                </h2>
+
+                <p class="subtitle">
+
+                    Advanced intelligence
+                    & prediction diagnostics.
+
+                </p>
+
+                <div class="metric-card">
+
+                    <div class="metric-label">
+
+                        Model Accuracy
+
+                    </div>
+
+                    <div class="metric-value">
+
+                        84.35%
+
+                    </div>
+
+                </div>
+
+                <div class="metric-card">
+
+                    <div class="metric-label">
+
+                        Attrition Risk Score
+
+                    </div>
+
+                    <div class="metric-value">
+
+                        {% if confidence %}
+
+                        {{ confidence }}%
+
+                        {% else %}
+
+                        Pending
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+                <div class="metric-card">
+
+                    <div class="metric-label">
+
+                        Risk Drivers
+
+                    </div>
+
+                    <div class="metric-value">
+
+                        Overtime
+                        <br>
+                        Satisfaction
+                        <br>
+                        Distance
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            {% if prediction_result %}
+
+            <div class="result-overlay">
+
+                <div class="result-card">
+
+                    <button type="button" class="modal-close" onclick="window.location.href='/advanced'">
+
+                        ✕
+
+                    </button>
+
+                    <div class="risk-badge
+{% if 'LOW' in risk_status %}
+risk-low
+{% elif 'MEDIUM' in risk_status %}
+risk-medium
+{% else %}
+risk-high
+{% endif %}
+">
+                        {{ risk_status }}
+                    </div>
+
+                    <div class="analysis-type">
+
+                        ADVANCED ANALYSIS
+
+                    </div>
+
+                    <div class="probability-value">
+
+                        {{ probability }}%
+
+                    </div>
+
+                    <div class="probability-tag">
+
+                        ATTRITION RISK
+
+                    </div>
+
+                    <p class="prediction-text">
+
+                        {{ prediction_result }}
+
+                    </p>
+
+                    <button class="close-btn" onclick="window.location.href='/advanced'">
+
+                        Run Another Analysis
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+        <script>
+
+            document.addEventListener("wheel", function (e) {
+
+                if (document.activeElement.type === "number") {
+
+                    e.preventDefault();
+
+                }
+
+            }, { passive: false });
+
+        </script>
+
+        <script>
+
+            const openBtn =
+                document.getElementById(
+                    "openFeatureModal"
+                )
+
+            const featureModal =
+                document.getElementById(
+                    "featureModal"
+                )
+
+            openBtn.addEventListener(
+
+                "click",
+
+                () => {
+
+                    featureModal.style.display =
+                        "flex"
+
+                }
+
+            )
+
+        </script>
+
+        <script>
+
+            const applyBtn =
+                document.getElementById(
+                    "applyFeatures"
+                )
+
+            const selectedFeaturesDiv =
+                document.getElementById(
+                    "selectedFeatures"
+                )
+
+            applyBtn.addEventListener(
+
+                "click",
+
+                () => {
+
+                    const checkedFeatures =
+
+                        document.querySelectorAll(
+                            '#featureModal input[type="checkbox"]:checked'
+                        )
+                    if (checkedFeatures.length < 7) {
+
+                        alert(
+                            "Please select at least 7 indicators."
+                        )
+
+                        return
+
+                    }
+                    if (checkedFeatures.length > 18) {
+
+                        alert(
+                            "Maximum 18 indicators allowed."
+                        )
+
+                        return
+
+                    }
+
+                    selectedFeaturesDiv.innerHTML = ""
+
+                    const dynamicFormFields =
+
+                        document.getElementById(
+                            "dynamicFormFields"
+                        )
+
+                    dynamicFormFields.innerHTML = ""
+
+                    if (
+                        checkedFeatures.length === 0
+                    ) {
+
+                        selectedFeaturesDiv.innerHTML =
+
+                            `<p class="empty-selection">
+
+                    No features selected
+
+                </p>`
+
+                    }
+
+                    checkedFeatures.forEach(
+
+                        feature => {
+
+                            selectedFeaturesDiv.innerHTML +=
+
+                                `
+        <span class="feature-chip">
+
+            ${feature.value}
+
+        </span>
+        `
+
+                            dynamicFormFields.innerHTML += `
+
+    <input
+        type="hidden"
+        name="selected_features"
+        value="${feature.value}"
+    >
+
+`
+
+                            const featureKey =
+
+                                feature.value
+                                    .toLowerCase()
+                                    .replaceAll(" ", "")
+
+                            const config =
+
+                                featureConfig[featureKey]
+
+                            if (!config) return
+
+                            if (config.type === "number") {
+
+                                dynamicFormFields.innerHTML += `
+
+            <div class="form-group">
+
+                <label>
+
+                    ${config.label}
+
+                </label>
+
+                <input
+
+                    type="number"
+
+                    name="${featureKey}"
+
+                    placeholder="${config.placeholder}"
+
+                    required
+
+                >
+
+            </div>
+
+            `
+
+                            }
+
+                            else {
+
+                                let options =
+
+                                    `<option value="" selected disabled>
+    Select ${config.label}
+</option>`
+
+                                config.options.forEach(
+
+                                    option => {
+
+                                        let optionValue;
+
+                                        if (option.includes(" - ")) {
+
+                                            optionValue = option.split(" - ")[0];
+
+                                        }
+
+                                        else {
+
+                                            optionValue = option;
+
+                                        }
+
+                                        options += `
+
+        <option value="${optionValue}">
+
+            ${option}
+
+        </option>
+
+        `;
+
+                                    }
+
+                                )
+
+                                dynamicFormFields.innerHTML += `
+
+            <div class="form-group">
+
+                <label>
+
+                    ${config.label}
+
+                </label>
+
+                <select
+
+                    name="${featureKey}"
+
+                    required
+
+                >
+
+                    ${options}
+
+                </select>
+
+            </div>
+
+            `
+
+                            }
+
+                        }
+
+                    )
+
+                    featureModal.style.display = "none"
+
+                }
+
+            )
+
+        </script>
+
+        <script>
+
+            const checkboxes =
+
+                document.querySelectorAll(
+                    '#featureModal input[type="checkbox"]'
+                )
+
+            const featureCounter =
+
+                document.getElementById(
+                    "featureCounter"
+                )
+
+            checkboxes.forEach(
+
+                checkbox => {
+
+                    checkbox.addEventListener(
+
+                        "change",
+
+                        () => {
+
+                            const selectedCount =
+
+                                document.querySelectorAll(
+                                    '#featureModal input[type="checkbox"]:checked'
+                                ).length
+
+                            featureCounter.textContent =
+
+                                `Selected: ${selectedCount} / 18`
+
+                        }
+
+                    )
+
+                }
+
+            )
+
+        </script>
+
+        <script>
+
+            document
+                .querySelectorAll(".core-feature")
+                .forEach(cb => {
+
+                    cb.addEventListener(
+                        "click",
+                        function (e) {
+
+                            e.preventDefault();
+
+                        }
+                    );
+
+                });
+
+            const featureConfig = {
+
+                age: {
+                    label: "Age (Years)",
+                    type: "number",
+                    placeholder: "e.g. 35"
+                },
+
+                monthlyincome: {
+                    label: "Monthly Income (₹)",
+                    type: "number",
+                    placeholder: "e.g. 50000"
+                },
+
+                distancefromhome: {
+                    label: "Distance From Home (Km)",
+                    type: "number",
+                    placeholder: "e.g. 12"
+                },
+
+                environmentsatisfaction: {
+                    label: "Environment Satisfaction",
+                    type: "select",
+                    options: [
+                        "1 - Low",
+                        "2 - Medium",
+                        "3 - High",
+                        "4 - Very High"
+                    ]
+                },
+
+                jobinvolvement: {
+                    label: "Job Involvement",
+                    type: "select",
+                    options: [
+                        "1 - Low",
+                        "2 - Medium",
+                        "3 - High",
+                        "4 - Very High"
+                    ]
+                },
+
+                jobsatisfaction: {
+                    label: "Job Satisfaction",
+                    type: "select",
+                    options: [
+                        "1 - Low",
+                        "2 - Medium",
+                        "3 - High",
+                        "4 - Very High"
+                    ]
+                },
+
+                worklifebalance: {
+                    label: "Work-Life Balance",
+                    type: "select",
+                    options: [
+                        "1 - Low",
+                        "2 - Medium",
+                        "3 - High",
+                        "4 - Very High"
+                    ]
+                },
+
+                relationshipsatisfaction: {
+                    label: "Relationship Satisfaction",
+                    type: "select",
+                    options: [
+                        "1 - Low",
+                        "2 - Medium",
+                        "3 - High",
+                        "4 - Very High"
+                    ]
+                },
+
+                totalworkingyears: {
+                    label: "Total Working Experience (Years)",
+                    type: "number",
+                    placeholder: "e.g. 10"
+                },
+
+                yearsatcompany: {
+                    label: "Years At Company",
+                    type: "number",
+                    placeholder: "e.g. 5"
+                },
+
+                yearsincurrentrole: {
+                    label: "Years In Current Role",
+                    type: "number",
+                    placeholder: "e.g. 2"
+                },
+
+                overtime: {
+                    label: "Overtime Status",
+                    type: "select",
+                    options: [
+                        "Yes",
+                        "No"
+                    ]
+                },
+
+                percentsalaryhike: {
+                    label: "Salary Hike (%)",
+                    type: "number",
+                    placeholder: "e.g. 15"
+                },
+
+                numcompaniesworked: {
+                    label: "Number of Companies Worked",
+                    type: "number",
+                    placeholder: "e.g. 3"
+                },
+
+                stockoptionlevel: {
+                    label: "Stock Option Level",
+                    type: "select",
+                    options: [
+                        "0",
+                        "1",
+                        "2",
+                        "3"
+                    ]
+                },
+
+                trainingtimeslastyear: {
+                    label: "Training Times Last Year",
+                    type: "number",
+                    placeholder: "e.g. 2"
+                },
+
+                yearssincelastpromotion: {
+                    label: "Years Since Last Promotion",
+                    type: "number",
+                    placeholder: "e.g. 1"
+                },
+
+                yearswithcurrentmanager: {
+                    label: "Years With Current Manager",
+                    type: "number",
+                    placeholder: "e.g. 3"
+                }
+
+            };
+
+        </script>
+
+</body>
+
+</html>
