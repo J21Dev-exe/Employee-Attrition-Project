@@ -19,5 +19,5 @@ Machine Learning and Workforce Analytics.
 - Workforce Analytics Dashboard
 
 ## Author
-Jeevan Jyoti Das
+Jeevan Jyoti Das |
 NIELIT | Data Curaion and Data Science project
