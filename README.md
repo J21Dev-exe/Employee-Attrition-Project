@@ -20,4 +20,4 @@ Machine Learning and Workforce Analytics.
 
 ## Author
 Jeevan Jyoti Das
-NIELIT Data Curaion and Data Science project
+NIELIT | Data Curaion and Data Science project
